@@ -2,11 +2,42 @@
 
 Quarantine Journaling REST API for CIS371
 
+Endpoints avaliable:
+
+- /users
+- /journals
+- /images
+- /comments
+- /locations
+- /static
+
 ## Installing
 
 _Install all dependencies_:
 
     npm install
+
+## Running program
+
+_Start the main program_:
+
+    node app.js
+
+_Query object information at endpoint_:
+
+    curl -iX GET localhost:8080/<endpoint>/<id>
+
+_Create new object at endpoint_:
+
+    curl -iX POST localhost:8080/<endpoint>
+
+_Update object information at endpoint_:
+
+    curl -iX PUT localhost:8080/<endpoint>/<id>
+
+_Delete object at endpoint_:
+
+    curl -iX DELETE localhost:8080/<endpoint>/<id>
 
 ## Built With
 
