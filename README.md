@@ -4,9 +4,9 @@ Quarantine Journaling REST API for CIS371
 
 ## Installing
 
-_Install express_:
+_Install all dependencies_:
 
-    npm install express
+    npm install
 
 ## Built With
 
