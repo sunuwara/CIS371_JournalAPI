@@ -1,27 +1,36 @@
 /* Users endpoints in this file */
 
 module.exports = function (app) {
-  // TODO: Get user with given id. 200 on Success. 404 if not found.
-  app.get("/users/:id", function (req, res) {
+  // Get user information with given id. 200 on Success. 404 if not found.
+  app.get("/users/:id", (req, res) => {
+    // Get database and connection
     const db = req.app.locals.db;
     const collection = db.collection("users");
 
-    collection.find().toArray(function (err, data) {
-      console.log(data);
-      if (err) {
-        return res.status(404).send("Not Found!");
-      }
-      res.send(data);
-    });
+    // Get the user info of requested id. Handle error.
+    collection
+      .find()
+      .toArray()
+      .then((data) => {
+        // Save the id parameter from the GET request
+        let id = req.params["id"];
+
+        // Check if GET request is requesting proper id value
+        if (id >= 0 && id < data.length) {
+          res.status(200).send(data[id]);
+        } else {
+          res.sendStatus(404);
+          return;
+        }
+      })
+      .catch((error) => console.error(error));
   });
 
   // Create a blank new user. 200 on Success. 400 if error with request.
   app.post("/users", (req, res) => {
     // Check if POST request had data passed
     if (Object.keys(req.body).length > 0) {
-      res
-        .status(400)
-        .send({ message: "Cannot send in data to create new user!" });
+      res.sendStatus(400);
       return;
     }
 
@@ -43,11 +52,9 @@ module.exports = function (app) {
     collection
       .save(user)
       .then((data) => {
-        res.send({ message: "User added successfully" });
+        res.status(200).send("User added successfully");
       })
-      .catch((err) => {
-        res.status(400).send({ message: err.message });
-      });
+      .catch((error) => console.error(error));
   });
 
   // TODO: Update user with given id. 200 on Success. 404 if not found.
@@ -55,14 +62,29 @@ module.exports = function (app) {
     res.send("PUT user");
   });
 
-  // TODO: Delete user with given id. 200 on Success. 404 if not found.
-  app.delete("/users", function (req, res) {
-    res.send("DELETE user");
-
+  // Delete user with given id. 200 on Success. 404 if not found.
+  app.delete("/users/:id", (req, res) => {
     // Get database and connection
     const db = req.app.locals.db;
     const collection = db.collection("users");
 
-    collection.remove({});
+    // Delete the user of requested id. Handle error.
+    collection
+      .find()
+      .toArray()
+      .then((data) => {
+        // Save the id parameter from the GET request
+        let id = req.params["id"];
+
+        // Check if GET request is requesting proper id value
+        if (id >= 0 && id < data.length) {
+          res.status(200).send("Deleting user");
+          collection.deleteOne(data[id]);
+        } else {
+          res.sendStatus(404);
+          return;
+        }
+      })
+      .catch((error) => console.error(error));
   });
 };
