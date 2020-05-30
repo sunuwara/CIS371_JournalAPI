@@ -8,10 +8,10 @@ const app = express();
 const port = 8080;
 // Load the database library
 const MongoClient = require("mongodb").MongoClient;
-const ObjectId = require("mongodb").ObjectId;
+
 // Enter your credentials in below!
 const uri =
-  "mongodb+srv://sunuwara:MKz3zfzVRqD87w8b@assignmentcluster-ztd8z.azure.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://{username}:{password}@assignmentcluster-ztd8z.azure.mongodb.net/test?retryWrites=true&w=majority";
 
 // Create a variable to hold our db connection
 let connection;
