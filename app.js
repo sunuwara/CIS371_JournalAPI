@@ -22,8 +22,9 @@ app.use(express.json());
 // such as "users/1")
 app.use(express.urlencoded({ extended: true }));
 
-// Load in the users module
+// Load in the users, journals module
 require("./users.js")(app);
+require("./journals.js")(app);
 
 // Connect to the db; start listening if successful.
 MongoClient.connect(uri, { useNewUrlParser: true })
