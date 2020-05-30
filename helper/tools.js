@@ -32,10 +32,8 @@ module.exports = {
     this.findEntity(collection, query, (error, doc) => {
       if (doc) {
         res.status(200).send(doc);
-        console.log(doc);
       } else {
         res.sendStatus(error);
-        console.error(error);
       }
     });
   },
@@ -59,11 +57,9 @@ module.exports = {
         res
           .status(200)
           .send(`New entity in /${endpoint}: _id = ${doc.insertedId}`);
-        console.log(`New entity in /${endpoint}: _id = ${doc.insertedId}`);
       })
       .catch((error) => {
         res.sendStatus(error);
-        console.error(error);
       });
   },
 
@@ -79,12 +75,10 @@ module.exports = {
     // Find and update entity information
     this.findEntity(collection, query, (error, doc) => {
       if (doc) {
-        res.status(200).send(`Updating entity in /${endpoint}...`);
-        console.log(`Updating entity in /${endpoint}...`);
+        res.status(200).send(`Updating entity in /${endpoint}...\n`);
         collection.replaceOne(doc, entity);
       } else {
         res.sendStatus(error);
-        console.error(error);
       }
     });
   },
@@ -102,11 +96,9 @@ module.exports = {
     this.findEntity(collection, query, (error, doc) => {
       if (doc) {
         res.status(200).send(`Deleting entity in /${endpoint}...`);
-        console.log(`Deleting entity in /${endpoint}...`);
         collection.deleteOne(doc);
       } else {
         res.sendStatus(error);
-        console.error(error);
       }
     });
   },
