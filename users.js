@@ -16,8 +16,8 @@ module.exports = function (app) {
       email: "",
       password: "",
       image: "",
-      dateJoined: new Date().toISOString().substring(0, 10),
-      admin: false
+      dateJoined: new Date().toISOString(),
+      admin: false,
     };
 
     tools.createEntity(req, res, "users", user);
@@ -31,8 +31,8 @@ module.exports = function (app) {
       email: req.body.email || "",
       password: "",
       image: req.body.image || "",
-      dateJoined: new Date().toISOString()(0, 10),
-      admin: req.body.admin || false
+      dateJoined: new Date().toISOString(),
+      admin: req.body.admin || false,
     };
 
     tools.updateEntity(req, res, "users", user);
