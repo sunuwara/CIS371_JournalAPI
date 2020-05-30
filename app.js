@@ -1,30 +1,32 @@
 /* Main Program: Entry point for the Journal REST API */
 
-// Load the express library
+// Import express library
 const express = require("express");
 // Create an instance of an express app
 const app = express();
 // Run on this port (stay over 1024 to avoid the need for admin privileges)
 const port = 8080;
-// Load the database library
+// Import database library
 const MongoClient = require("mongodb").MongoClient;
 
-// Enter your credentials in below!
+// Enter credentials to connect to mongodb server
 const uri =
   "mongodb+srv://{username}:{password}@assignmentcluster-ztd8z.azure.mongodb.net/test?retryWrites=true&w=majority";
 
 // Create a variable to hold our db connection
 let connection;
 
-// Tell the app to use the builtin JSON parser
+// App will use the builtin JSON parser and decode urls
 app.use(express.json());
-// Tell the app to decode urls for us (so we can pass values in the URL
-// such as "users/1")
 app.use(express.urlencoded({ extended: true }));
 
-// Load in the users, journals module
+// Import endpoint modules
 require("./endpoints/users.js")(app);
 require("./endpoints/journals.js")(app);
+require("./endpoints/images.js")(app);
+require("./endpoints/comments.js")(app);
+require("./endpoints/locations.js")(app);
+require("./endpoints/static.js")(app);
 
 // Connect to the db; start listening if successful.
 MongoClient.connect(uri, { useNewUrlParser: true })
