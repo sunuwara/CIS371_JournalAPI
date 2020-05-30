@@ -1,5 +1,6 @@
 /* Helper functions to complete requests */
 
+// Import mongodb's ObjectId library
 const ObjectId = require("mongodb").ObjectId;
 
 module.exports = {
