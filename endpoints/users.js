@@ -1,7 +1,7 @@
 /* Users endpoints in this file */
 
 module.exports = function (app) {
-  var tools = require("./tools.js");
+  var tools = require("../helper/tools.js");
 
   // Get user information with given id. 200 on Success. 404 if not found.
   app.get("/users/:id", (req, res) => {

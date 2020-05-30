@@ -1,7 +1,7 @@
 /* Journals endpoints in this file */
 
 module.exports = function (app) {
-  var tools = require("./tools.js");
+  var tools = require("../helper/tools.js");
 
   // Get journal information with given id. 200 on Success. 404 if not found.
   app.get("/journals/:id", (req, res) => {
