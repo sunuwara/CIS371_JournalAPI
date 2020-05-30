@@ -25,19 +25,19 @@ _Start the main program_:
 
 _Query object information at endpoint_:
 
-    curl -iX GET localhost:8080/<endpoint>/<id>
+    curl -iX GET http://localhost:8080/{endpoint}/{object_id}
 
 _Create new object at endpoint_:
 
-    curl -iX POST localhost:8080/<endpoint>
+    curl -iX POST http://localhost:8080/{endpoint}
 
 _Update object information at endpoint_:
 
-    curl -iX PUT localhost:8080/<endpoint>/<id>
+    curl -iX PUT -H "Content-Type: application/json" -d '{"key":"val","key":"val"}' http://localhost:8080/users/{object_id}
 
 _Delete object at endpoint_:
 
-    curl -iX DELETE localhost:8080/<endpoint>/<id>
+    curl -iX DELETE http://localhost:8080/{endpoint}/{object_id}
 
 ## Built With
 
