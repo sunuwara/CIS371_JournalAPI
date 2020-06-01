@@ -10,9 +10,12 @@ module.exports = function (app) {
 
   // Create a blank new static content. 200 on Success. 400 if error with request.
   app.post("/static", (req, res) => {
-    // Create a new static
+    // Create a new static content
     var staticContent = {
-      url: "",
+      locationId: "",
+      filetype: "",
+      length: 0,
+      bytes: 0,
     };
 
     tools.createEntity(req, res, "static", staticContent);
@@ -21,9 +24,7 @@ module.exports = function (app) {
   // Update static content with the given id. 200 on Success. 404 if not found.
   app.put("/static/:id", (req, res) => {
     // Create a new static content
-    var staticContent = {
-      url: req.body.url || "",
-    };
+    var staticContent = tools.getEntity(req, res, "images");
 
     tools.updateEntity(req, res, "static", staticContent);
   });
