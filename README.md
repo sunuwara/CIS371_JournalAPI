@@ -33,7 +33,7 @@ _Create new object at endpoint_:
 
 _Update object information at endpoint_:
 
-    curl -iX PUT -H "Content-Type: application/json" -d '{"key":"val","key":"val"}' http://localhost:8080/users/{object_id}
+    curl -iX PUT -H "Content-Type: application/json" -d '{"key":"val","key":"val"}' http://localhost:8080/{endpoint}/{object_id}
 
 _Delete object at endpoint_:
 
