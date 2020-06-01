@@ -14,6 +14,7 @@ module.exports = function (app) {
     var comment = {
       commenterId: "",
       journalId: "",
+      content: "",
       dateCreated: new Date().toISOString(),
     };
 
@@ -26,6 +27,7 @@ module.exports = function (app) {
     var comment = {
       commenterId: req.body.commenterId || "",
       journalId: req.body.journalId || "",
+      content: req.body.content || "",
       dateCreated: new Date().toISOString(),
     };
 
