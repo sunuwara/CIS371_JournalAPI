@@ -16,6 +16,9 @@ const uri =
 // Create a variable to hold our db connection
 let connection;
 
+// App will use the public folder to hold the static contents in the static endpoint
+app.use("/static", express.static("./public"));
+
 // App will use the builtin JSON parser and decode urls
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
